@@ -1261,7 +1261,7 @@ public class SpecificCompiler {
     char firstChar = field.name().charAt(0);
     String conflictingFieldName = (Character.isLowerCase(firstChar) ? Character.toUpperCase(firstChar)
         : Character.toLowerCase(firstChar)) + (field.name().length() > 1 ? field.name().substring(1) : "");
-    boolean fieldNameConflict = schema.getField(conflictingFieldName) != null;
+    boolean fieldNameConflict = Character.isAlphabetic(firstChar) && schema.getField(conflictingFieldName) != null;
 
     StringBuilder methodBuilder = new StringBuilder(prefix);
     String fieldName = mangle(field.name(), schema.isError() ? ERROR_RESERVED_WORDS : ACCESSOR_MUTATOR_RESERVED_WORDS,
